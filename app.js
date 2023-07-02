@@ -3,43 +3,86 @@ let unidade = document.getElementById('unidade')
 let produto = document.getElementById('produto')
 let receber = document.getElementById('card-pai')
 
+let dadosDescricao = document.querySelectorAll('.dadosDescricao')
+let dadosMenu =document.getElementById('dadosTable')
+
 let arrayCompras = []
 
 function atualizar() { 
-    arrayCompras.push(Number(valor.value * unidade.value))
 
-    let newProduto = document.createElement('div')
+        arrayCompras.push(Number(valor.value * unidade.value))
 
-    let div = document.createElement('div')
-    div.classList.add('cardFilho')
-    div.textContent += `Descrição: ${produto.value}`
+        let newTr = document.createElement('tr')
+        newTr.classList.add('dadosMenu')
 
-    div.innerHTML += `Valor: ${baseCalculo(Number(valor.value), Number(unidade.value)).toFixed(2)}`
+        let newTdDescricao = document.createElement('td')
+        newTdDescricao.classList.add('dadosDescricao')
+        newTdDescricao.textContent =  produto.value
+        let dadosUnidades = document.createElement('td')
+        dadosUnidades.classList.add('dadosUnidades')
+        dadosUnidades.textContent = unidade.value
+        let dadosValor = document.createElement('td')
+        dadosValor.classList.add('dadosValor')
+        dadosValor.textContent = valor.value
 
-    div.appendChild(newProduto)
+        let statusBtn = document.createElement('button')
+        statusBtn.classList.add('dadosBtnExluir')
+        statusBtn.textContent = 'Excluir'
 
-    receber.appendChild(div)
+        newTr.appendChild(newTdDescricao)
+        newTr.appendChild(dadosUnidades)
+        newTr.appendChild(dadosValor)
+        newTr.appendChild(statusBtn)
 
-    valor.value = ''
-    unidade.value = ''
-    produto.value = ''
+        dadosMenu.appendChild(newTr)
 
-    somar()
+        statusBtn.addEventListener('click', () => {
+            let elementoClicado = event.target
+            
+            if(elementoClicado.classList.contains('dadosBtnExluir')) {
+                let linha = elementoClicado.closest('tr')
+                linha.remove()
+            }
+
+        })
+
+        valor.value = ''
+        unidade.value = ''
+        produto.value = ''
+
+        somar()
+        calcular()
 }
 
 function baseCalculo(a, b) {
     return a * b
 }
 
-
 function somar() {
     let receberSoma = document.getElementById('soma')
     let sum = arrayCompras.reduce((valorAcumulado, numeros) => valorAcumulado + numeros, 0)
 
-    receberSoma.innerHTML = `R$: ${sum.toFixed(2)}`
+    receberSoma.innerHTML = `${sum.toFixed(2)}`
 
-    console.log(sum)
-    
+    return Number(sum.toFixed(2))
 }
 
-somar()
+let myMoney = document.getElementById('myMoney')
+let saldoMoney = document.getElementById('saldoMoney') 
+function mySaldo () {
+    saldoMoney.innerHTML = `${Number(myMoney.value).toFixed(2)}`
+    myMoney.value = ''
+    calcular()
+}
+
+function calcular() {
+    let valor1 = Number(document.getElementById('saldoMoney').textContent);
+    let valor2 = Number(document.getElementById('soma').textContent);
+  
+    let resultado = valor1 - valor2;
+  
+    document.getElementById('resultado').textContent = `${resultado.toFixed(2)}`;
+
+}
+
+
