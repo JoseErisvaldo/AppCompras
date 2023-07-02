@@ -5,26 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>App</title>
+
 </head>
 <body>
 
     <div id="container">
-        <div class="menu">
-            <div> 
-                <span>Custo total:</span> 
-                <span id="soma">0</span>
-             </div>
+        <div id="menu">
+            <div class="menu">
+                <div> 
+                    <span>Seu saldo R$:</span> 
+                    <span id="saldoMoney"></span>
+                </div>
+            </div>
+            <div class="menu"> 
+                <div> 
+                    <span>Custo total R$:</span> 
+                    <span id="soma"></span>
+                </div>
+            </div>
         </div>
+        <div class="menu"> 
+            <div> 
+                <span id="">Saldo restante R$:</span> 
+                <span id="resultado"></span>
+            </div>
+        </div>
+        <br>
         <div class="dados">
+            <input id="myMoney" type="number" placeholder="Digite seu saldo">
+            <button onclick="mySaldo()">Inserir saldo</button>
+            <br>
             <input id="produto" type="text" placeholder="Produto">
             <input id="valor" type="number" placeholder="Valor">
             <input id="unidade" type="number" placeholder="Unidades">
             <button onclick="atualizar()">Adicionar ao carrinho</button>
         </div>
         <div id="card-pai" >
-            
-        </div>
+            <div class="tabela-responsiva">
+                <table>
+                  <thead>
+                    <tr id="menuDados">
+                      <th>Descrição</th>
+                      <th>Unidades</th>
+                      <th>Valor Unitario</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dadosTable">
+                    <!--
+                    <tr class="dadosMenu">
+                      <td class="dadosDescricao">Arroz</td>
+                      <td class="dadosUnidades">2</td>
+                      <td class="dadosValorUnitario">25,00</td>
+                      <td class="dadosValor">Excluir</td>
+                    </tr>
+                    <tr class="dadosMenu">
+                        <td class="dadosDescricao">Feijão</td>
+                        <td class="dadosUnidades">4</td>
+                        <td class="dadosValorUnitario">25,00</td>
+                        <td class="dadosExcluir">Excluir</td>
+                      </tr>
+                      -->
+                  </tbody>
+                </table>
+              </div>
+        </div>  
+        <br>       
     </div>
+    
         <script src="app.js"></script>
 </body>
 </html>
