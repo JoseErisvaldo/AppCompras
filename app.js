@@ -20,7 +20,9 @@ function atualizar() {
 
     receber.appendChild(div)
 
-
+    valor.value = ''
+    unidade.value = ''
+    produto.value = ''
 
     somar()
 }
@@ -34,7 +36,7 @@ function somar() {
     let receberSoma = document.getElementById('soma')
     let sum = arrayCompras.reduce((valorAcumulado, numeros) => valorAcumulado + numeros, 0)
 
-    receberSoma.innerHTML = sum
+    receberSoma.innerHTML = `R$: ${sum.toFixed(2)}`
 
     console.log(sum)
     
